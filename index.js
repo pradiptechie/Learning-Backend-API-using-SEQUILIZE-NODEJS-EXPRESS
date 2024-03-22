@@ -19,6 +19,12 @@ app.get('/', (req, res) => {
   res.send('Hello World!')
 })
 
+const userCtrl = require('./controllers/userctrl');
+
+app.get('/adduser', userCtrl.addUser);
+app.get('/showuser', userCtrl.showUser);
+  
+
 
 // User.sync({ force: true });
 // Contact.sync({ force: true });

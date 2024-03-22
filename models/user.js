@@ -30,6 +30,8 @@ module.exports = (sequelize, DataTypes)=>{
 
     // `sequelize.define` also returns the model
     console.log(User === sequelize.models.User);
+    
+    return User;
 
 }
 

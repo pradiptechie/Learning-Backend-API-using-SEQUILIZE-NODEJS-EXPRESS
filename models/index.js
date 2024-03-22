@@ -19,10 +19,10 @@ db.sequelize = sequelize;
 
 
 db.contact = require('./contact')(sequelize, DataTypes, Model)
-db.user = require('./user')(sequelize, DataTypes)
+db.User = require('./user')(sequelize, DataTypes)
 db.Book = require('./book')(sequelize, DataTypes)
-// db.sequelize.sync({ alter: true });
-db.sequelize.sync({ force: true });
+db.sequelize.sync({ alter: true });
+// db.sequelize.sync({ force: true });
 // db.sequelize.drop();
 module.exports = db;
 

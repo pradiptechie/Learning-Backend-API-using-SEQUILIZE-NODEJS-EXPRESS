@@ -20,7 +20,8 @@ module.exports = (sequelize, DataTypes, Model)=>{
     modelName: 'Contact'
     });
 
-    console.log(Contact === sequelize.models.Contact); // true
+    console.log(Contact === sequelize.models.Contact);
+    return Contact;
 }
 
 // module.exports = Contact;
