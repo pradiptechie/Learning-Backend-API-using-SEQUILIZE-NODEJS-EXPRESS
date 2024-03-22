@@ -21,8 +21,12 @@ app.get('/', (req, res) => {
 
 const userCtrl = require('./controllers/userctrl');
 
-app.get('/adduser', userCtrl.addUser);
-app.get('/showuser', userCtrl.showUser);
+app.get('/adduser', userCtrl.addUser);//fixed
+app.post('/postuser', userCtrl.postUser); //by post
+app.get('/showusers', userCtrl.showUsers);
+app.get('/showuser/:id', userCtrl.showUser);
+app.delete('/deluser/:id', userCtrl.delUser);
+app.patch('/updateuser/:id', userCtrl.updateUser);
   
 
 
