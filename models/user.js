@@ -6,12 +6,13 @@
 module.exports = (sequelize, DataTypes)=>{
     const User = sequelize.define('User', {
     firstName: {
+        // datatype
         type: DataTypes.STRING,
 
         //constraints: SQL query was performed, an error will be thrown by the database
         allowNull: false,
         defaultValue: "Pradip",
-        unique: true,
+        // unique: true,
 
         //validatios: no SQL query will be sent to the database if failed
         validate:{
@@ -20,10 +21,16 @@ module.exports = (sequelize, DataTypes)=>{
         
     },
     middleName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        validate:{
+            isAlpha:true
+        }
     },
     lastName: {
-        type: DataTypes.STRING
+        type: DataTypes.STRING,
+        validate:{
+            isAlpha:true
+        }
     }
     }, {
     tableName: 'user',

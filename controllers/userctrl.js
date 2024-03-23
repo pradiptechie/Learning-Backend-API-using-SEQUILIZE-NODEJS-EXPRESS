@@ -45,16 +45,20 @@ const addUser = async (req, res)=>{ //updating instance
         res.status(200).json(data.toJSON());
         
     } catch (error) {
-        console.log(error.errors);
-        res.status(200).json(error.errors);
-
+        if (error.errors && error.errors.length > 0) {
+            console.log(error.errors);
+            res.status(200).json(error.errors.map(err => err.message));
+        } else {
+            console.error("Error:", error);
+            res.status(500).json("An error occurred while processing your request.");
+        }
     }
 }
 
 
 const showUsers = async(req, res) =>{
     try {
-        // const data = await User.findAll({});
+        const data = await User.findAll({});
 
         // const data = await User.findAll({ //SELECT id, lastName FROM User
         //     attributes: ['id', 'lastName']
@@ -64,17 +68,17 @@ const showUsers = async(req, res) =>{
         //     attributes:{ exclude:['id', 'lastName']}
         // });
 
-        const data = await User.findAll({ //selsct id as ID, and lastname
-            attributes: [['id', 'ID'], 'lastName']
-        });
+        // const data = await User.findAll({ //selsct id as ID, and lastname
+        //     attributes: [['id', 'ID'], 'lastName']
+        // });
 
 
         console.log(data instanceof User);
-        res.status(200).json({data:data});
+        res.status(200).json(data);
         
     } catch (error) {
         console.log(error.errors);
-        res.status(200).json(error.errors);
+        res.status(200).json(error.errors[0].message);
     }
 
 }
@@ -88,11 +92,11 @@ const showUser = async(req, res) =>{
         });
         console.log(data instanceof User);
     
-        res.status(200).json({data:data});
+        res.status(200).json(data);
         
     } catch (error) {
         console.log(error.errors);
-        res.status(200).json(error.errors);
+        res.status(200).json(error.errors[0].message);
     }
 }
 
@@ -103,15 +107,20 @@ const postUser = async(req,res)=>{
             var data = await User.bulkCreate(postData);
     
         }else{
-            var data = await User.create(postData);
+            data = await User.create(postData);
     
         }
         // console.log(data);
-        res.status(200).json({data:data});
+        res.status(200).json(data);
         
     } catch (error) {
-        console.log(error.errors);
-        res.status(200).json(error.errors);
+        if (error.errors && error.errors.length > 0) {
+            console.log(error.errors);
+            res.status(200).json(error.errors.map(err => err.message));
+        } else {
+            console.error("Error:", error);
+            res.status(500).json("An error occurred while processing your request.");
+        }
     }
 }
 
@@ -132,7 +141,7 @@ const delUser = async(req, res) =>{ //delete where condition
 
 const delUsers = async(req, res) =>{ //delete all
     try {
-        const data = await User.destroy({
+        await User.destroy({
             truncate: true 
         });
         res.status(200).json('All users deleted successfully.');
@@ -151,11 +160,11 @@ const updateUser = async(req, res) =>{
                 id:req.params.id
             }
         });
-        res.status(200).json({data:data});
+        res.status(200).json({status:data});
         
     } catch (error) {
-        console.log(error.errors);
-        res.status(200).json(error.errors);
+        console.log('Error updating user:', error);
+        res.status(200).json('Error updating user:', error);
     }
 }
 
@@ -170,8 +179,13 @@ const valUser = async(req, res) =>{
         res.status(200).json(data.toJSON());
         
     } catch (error) {
-        console.log(error.errors);
-        res.status(200).json(error.errors);
+        if (error.errors && error.errors.length > 0) {
+            console.log(error.errors);
+            res.status(200).json(error.errors.map(err => err.message));
+        } else {
+            console.error("Error:", error);
+            res.status(500).json("An error occurred while processing your request.");
+        }
     }
 }
 
