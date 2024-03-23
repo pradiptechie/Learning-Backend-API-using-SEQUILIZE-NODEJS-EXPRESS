@@ -7,8 +7,17 @@ module.exports = (sequelize, DataTypes)=>{
     const User = sequelize.define('User', {
     firstName: {
         type: DataTypes.STRING,
+
+        //constraints: SQL query was performed, an error will be thrown by the database
         allowNull: false,
-        defaultValue: "Pradip"
+        defaultValue: "Pradip",
+        unique: true,
+
+        //validatios: no SQL query will be sent to the database if failed
+        validate:{
+            isAlpha:true
+        }
+        
     },
     middleName: {
         type: DataTypes.STRING

@@ -26,7 +26,9 @@ app.post('/postuser', userCtrl.postUser); //by post
 app.get('/showusers', userCtrl.showUsers);
 app.get('/showuser/:id', userCtrl.showUser);
 app.delete('/deluser/:id', userCtrl.delUser);
+app.delete('/delusers', userCtrl.delUsers);
 app.patch('/updateuser/:id', userCtrl.updateUser);
+app.get('/valuser', userCtrl.valUser);
   
 
 
