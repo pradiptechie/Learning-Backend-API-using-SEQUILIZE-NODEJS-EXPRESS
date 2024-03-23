@@ -12,7 +12,7 @@ module.exports = (sequelize, DataTypes)=>{
         //constraints: SQL query was performed, an error will be thrown by the database
         allowNull: false,
         defaultValue: "Pradip",
-        // unique: true,
+        unique: true,
 
         //validatios: no SQL query will be sent to the database if failed
         validate:{
